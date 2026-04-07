@@ -42,7 +42,7 @@ jobs:
           secure: false
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
-          to: shriram.vijaykumar@outlook.com
+          to: ram.shri9826@gmail.com
           from: DS Job Monitor <${{ secrets.MAIL_USERNAME }}>
           subject: "${{ env.NEW_JOBS_COUNT }} new DS/Analytics jobs — USA — ${{ github.run_number }}"
           body: file://new_jobs.md
