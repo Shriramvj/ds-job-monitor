@@ -1,0 +1,52 @@
+name: DS Job Monitor
+
+on:
+  schedule:
+    - cron: '0 * * * *'   # every hour
+  workflow_dispatch:        # manual trigger from Actions tab
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write   # to commit updated cache
+      issues: write     # to open GitHub Issues
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Run job monitor
+        run: python job_monitor.py
+
+      - name: Commit updated cache back to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add job_cache.json new_jobs.md
+          git diff --staged --quiet || git commit -m "chore: update job cache [skip ci]"
+          git push
+
+      - name: Open GitHub Issue for new jobs
+        if: env.NEW_JOBS_COUNT != '0' && env.NEW_JOBS_COUNT != ''
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const count = process.env.NEW_JOBS_COUNT;
+            const body  = fs.readFileSync('new_jobs.md', 'utf8');
+            await github.rest.issues.create({
+              owner: context.repo.owner,
+              repo:  context.repo.repo,
+              title: `${count} new DS/Analytics job(s) — ${new Date().toISOString().slice(0,10)}`,
+              body:  body,
+              labels: ['new-jobs'],
+            });
