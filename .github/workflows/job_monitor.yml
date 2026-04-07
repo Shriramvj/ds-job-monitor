@@ -37,14 +37,14 @@ jobs:
         if: env.NEW_JOBS_COUNT != '0' && env.NEW_JOBS_COUNT != ''
         uses: dawidd6/action-send-mail@v3
         with:
-          server_address: smtp-mail.outlook.com
+          server_address: smtp.gmail.com
           server_port: 587
           secure: false
           username: ${{ secrets.MAIL_USERNAME }}
           password: ${{ secrets.MAIL_PASSWORD }}
           to: shriram.vijaykumar@outlook.com
           from: DS Job Monitor <${{ secrets.MAIL_USERNAME }}>
-          subject: "${{ env.NEW_JOBS_COUNT }} new DS/Analytics jobs in USA — ${{ github.run_number }}"
+          subject: "${{ env.NEW_JOBS_COUNT }} new DS/Analytics jobs — USA — ${{ github.run_number }}"
           body: file://new_jobs.md
           convert_markdown: true
 
