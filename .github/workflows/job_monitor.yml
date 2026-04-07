@@ -9,15 +9,13 @@ jobs:
   monitor:
     runs-on: ubuntu-latest
     permissions:
-      contents: write   # to commit updated cache
-      issues: write     # to open GitHub Issues
+      contents: write
+      issues: write
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
@@ -27,13 +25,28 @@ jobs:
       - name: Run job monitor
         run: python job_monitor.py
 
-      - name: Commit updated cache back to repo
+      - name: Commit updated cache
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add job_cache.json new_jobs.md
           git diff --staged --quiet || git commit -m "chore: update job cache [skip ci]"
           git push
+
+      - name: Send email with new jobs
+        if: env.NEW_JOBS_COUNT != '0' && env.NEW_JOBS_COUNT != ''
+        uses: dawidd6/action-send-mail@v3
+        with:
+          server_address: smtp-mail.outlook.com
+          server_port: 587
+          secure: false
+          username: ${{ secrets.MAIL_USERNAME }}
+          password: ${{ secrets.MAIL_PASSWORD }}
+          to: shriram.vijaykumar@outlook.com
+          from: DS Job Monitor <${{ secrets.MAIL_USERNAME }}>
+          subject: "${{ env.NEW_JOBS_COUNT }} new DS/Analytics jobs in USA — ${{ github.run_number }}"
+          body: file://new_jobs.md
+          convert_markdown: true
 
       - name: Open GitHub Issue for new jobs
         if: env.NEW_JOBS_COUNT != '0' && env.NEW_JOBS_COUNT != ''
@@ -42,11 +55,11 @@ jobs:
           script: |
             const fs = require('fs');
             const count = process.env.NEW_JOBS_COUNT;
-            const body  = fs.readFileSync('new_jobs.md', 'utf8');
+            const body = fs.readFileSync('new_jobs.md', 'utf8');
             await github.rest.issues.create({
               owner: context.repo.owner,
-              repo:  context.repo.repo,
-              title: `${count} new DS/Analytics job(s) — ${new Date().toISOString().slice(0,10)}`,
-              body:  body,
+              repo: context.repo.repo,
+              title: `${count} new DS/Analytics job(s) — USA — ${new Date().toISOString().slice(0,10)}`,
+              body: body,
               labels: ['new-jobs'],
             });
