@@ -108,9 +108,14 @@ def is_usa(location: str) -> bool:
     for skip in NON_US:
         if skip in loc:
             return False
-    if any(kw in loc for kw in ("united states", "usa", "u.s.", "u.s.a")):
+    # Explicit US signals (covers "united states", "usa", ", us", "us-remote" etc.)
+    if any(kw in loc for kw in ("united states", "usa", "u.s.", "u.s.a", ", us", "(us)", "us,")):
         return True
-    tokens = set(re.split(r"[,\s/|()]+", loc))
+    # Greenhouse uses "US-SF", "US-NYC", "US-SEA", "Remote-USA", "Remote - USA"
+    if re.search(r"\bus[-\s]", loc) or re.search(r"[-\s]usa\b", loc):
+        return True
+    # Split on commas, spaces, slashes, pipes, parens AND hyphens for tokenisation
+    tokens = set(re.split(r"[,\s/|()\-•]+", loc))
     return bool(tokens & US_STATES)
 
 def is_match(title: str, location: str) -> bool:
