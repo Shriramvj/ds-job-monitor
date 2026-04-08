@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """DS Job Monitor - Shriram Vijaykumar
 Scans Greenhouse, Lever, Ashby, Workday, Breezy HR, Workable, iCIMS, Paylocity, ADP
-for new DS/Analytics/BI/Insights roles.
-USA only · <5 years experience (no Director/VP/Principal) · Opens GitHub Issue + sends email.
+for new DS/Analytics/BI/Insights roles in the USA.
 """
 import json, os, re, requests
 from datetime import datetime
@@ -11,35 +10,49 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 CACHE_FILE  = "job_cache.json"
 OUTPUT_FILE = "new_jobs.md"
 GITHUB_ENV  = os.environ.get("GITHUB_ENV", "")
-TIMEOUT, MAX_WORKERS = 12, 30
+TIMEOUT, MAX_WORKERS = 15, 40
 
-# ── Title match ────────────────────────────────────────────────────────────────
+# ── Title match — broad net ────────────────────────────────────────────────────
 MATCH = [
-    "business analyst","data scientist","product data scientist",
-    "applied data scientist","decision scientist","quantitative analyst",
-    "product analyst","analytics engineer","business intelligence analyst",
-    "bi analyst","bi engineer","decision science","customer insights analyst",
-    "consumer insights","growth analyst","revenue analytics","revenue analyst",
-    "experimentation scientist","a/b testing","causal inference",
-    "measurement scientist","applied statistician","marketing data scientist",
-    "marketing scientist","media mix model","mmm scientist",
-    "attribution scientist","crm analytics","personalization scientist",
+    # Core data science / analyst
+    "data scientist","data science","applied scientist","research scientist",
+    "decision scientist","quantitative analyst","quantitative researcher",
+    "business analyst","business intelligence","bi analyst","bi engineer",
+    "bi developer","data analyst","analytics analyst",
+    # Product / growth
+    "product analyst","product data scientist","growth analyst",
+    "revenue analyst","revenue analytics","customer insights",
+    "consumer insights","market analyst","market intelligence",
+    # Engineering / platform
+    "analytics engineer","data engineer","analytics platform",
+    "reporting analyst","reporting engineer","insights analyst",
+    "insights engineer","performance analyst",
+    # Experimentation / measurement
+    "experimentation scientist","measurement scientist","applied statistician",
+    "a/b testing","causal inference",
+    # Marketing / CRM
+    "marketing analyst","marketing data scientist","marketing scientist",
+    "media mix model","mmm scientist","attribution scientist",
+    "crm analytics","personalization scientist",
+    # Healthcare / pharma
     "real world evidence","rwe scientist","patient journey analyst",
     "healthcare data scientist","pharma analytics","heor analyst",
-    "health economics","outcomes research","insights analyst",
-    "insights engineer","market analyst","market intelligence",
-    "reporting analyst","performance analyst","people analytics","hr analytics",
+    "health economics","outcomes research","clinical data analyst",
+    "epidemiologist","biostatistician",
+    # People / HR
+    "people analytics","hr analytics","workforce analytics",
 ]
 
-# ── Exclude — too senior / irrelevant ─────────────────────────────────────────
+# ── Exclude — leadership / unrelated ──────────────────────────────────────────
 EXCLUDE = [
     "director","vp ","vice president","head of","chief","principal ",
-    "staff ","senior manager","manager of","associate director",
-    "software engineer","frontend","backend","devops","security",
-    "legal","recruiter","designer","ux ","account executive",
+    "senior manager","manager of","associate director",
+    "software engineer","frontend","backend","devops","security engineer",
+    "legal","recruiter","sourcer","designer","ux researcher",
+    "account executive","account manager","sales engineer",
+    "solutions engineer","solutions architect",
 ]
-
-# ── USA location check ────────────────────────────────────────────────────────
+# ── USA location check ────────────────────────────────────────────────────────────────
 US_STATES = {
     "alabama","alaska","arizona","arkansas","california","colorado",
     "connecticut","delaware","florida","georgia","hawaii","idaho",
@@ -56,23 +69,27 @@ US_STATES = {
     "tx","ut","vt","va","wa","wv","wi","wy","dc",
     "san francisco","new york","los angeles","chicago","seattle","boston",
     "austin","denver","atlanta","miami","dallas","houston","portland",
-    "san diego","san jose","brooklyn","manhattan","remote",
+    "san diego","san jose","brooklyn","manhattan","remote","united states","usa",
 }
 NON_US = [
     "canada","uk","united kingdom","london","toronto","vancouver",
-    "india","bangalore","hyderabad","germany","berlin","france","paris",
-    "australia","sydney","singapore","brazil","mexico","ireland","dublin",
-    "netherlands","amsterdam","spain","poland","israel","tel aviv",
+    "india","bangalore","hyderabad","pune","chennai","mumbai",
+    "germany","berlin","frankfurt","france","paris",
+    "australia","sydney","melbourne","singapore","brazil","sao paulo",
+    "mexico","mexico city","ireland","dublin","netherlands","amsterdam",
+    "spain","madrid","poland","warsaw","israel","tel aviv",
+    "sweden","stockholm","denmark","copenhagen","switzerland","zurich",
+    "japan","tokyo","china","beijing","shanghai","hong kong","new zealand",
 ]
 
 def is_usa(location: str) -> bool:
     if not location or location.strip() == "":
-        return True
+        return True   # blank = assume USA (most ATS portals are US-focused)
     loc = location.lower()
     for skip in NON_US:
         if skip in loc:
             return False
-    if any(kw in loc for kw in ("united states","usa","u.s.","u.s.a")):
+    if any(kw in loc for kw in ("united states", "usa", "u.s.", "u.s.a")):
         return True
     tokens = set(re.split(r"[,\s/|()]+", loc))
     return bool(tokens & US_STATES)
@@ -86,7 +103,6 @@ def is_match(title: str, location: str) -> bool:
     if not is_usa(location):
         return False
     return True
-
 # ── Cache ──────────────────────────────────────────────────────────────────────
 def load_cache():
     try:
@@ -130,8 +146,7 @@ def fetch_lv(company):
         ).json()
         jobs = []
         for j in data:
-            title = j.get("text", "")
-            loc   = j.get("categories", {}).get("location", "")
+            title = j.get("text", "")            loc   = j.get("categories", {}).get("location", "")
             if is_match(title, loc):
                 jobs.append({"id": f"lv-{j['id']}", "title": title,
                               "company": company, "location": loc,
@@ -161,31 +176,45 @@ def fetch_ab(company):
 
 # ── WORKDAY ───────────────────────────────────────────────────────────────────
 def fetch_wd(tenant, job_board="External"):
-    """POST to a company's Workday job board API (public, no auth required)."""
+    """POST to Workday job board API with full pagination (no 20-job cap)."""
     try:
-        url  = f"https://{tenant}.wd1.myworkdayjobs.com/wday/cxs/{tenant}/{job_board}/jobs"
-        resp = requests.post(
-            url,
-            json={"limit": 20, "offset": 0, "searchText": "", "appliedFacets": {}},
-            headers={"Content-Type": "application/json"},
-            timeout=TIMEOUT
-        )
-        if resp.status_code != 200:
-            return []
-        jobs = []
-        for j in resp.json().get("jobPostings", []):
-            title = j.get("title", "")
-            loc   = j.get("locationsText", "")
-            path  = j.get("externalPath", "")
-            if is_match(title, loc):
-                jobs.append({
-                    "id": f"wd-{tenant}-{path}",
-                    "title": title,
-                    "company": tenant,
-                    "location": loc,
-                    "url": f"https://{tenant}.wd1.myworkdayjobs.com{path}",
-                    "source": "Workday",
-                })
+        url    = f"https://{tenant}.wd1.myworkdayjobs.com/wday/cxs/{tenant}/{job_board}/jobs"
+        limit  = 20   # Workday max per page
+        offset = 0
+        jobs   = []
+        while True:
+            resp = requests.post(
+                url,
+                json={"limit": limit, "offset": offset,
+                      "searchText": "", "appliedFacets": {}},
+                headers={"Content-Type": "application/json"},
+                timeout=TIMEOUT
+            )
+            if resp.status_code != 200:
+                break
+            data     = resp.json()
+            postings = data.get("jobPostings", [])
+            if not postings:
+                break
+            for j in postings:
+                title = j.get("title", "")
+                loc   = j.get("locationsText", "")
+                path  = j.get("externalPath", "")
+                if is_match(title, loc):
+                    jobs.append({
+                        "id":       f"wd-{tenant}-{path}",
+                        "title":    title,
+                        "company":  tenant,
+                        "location": loc,
+                        "url":      f"https://{tenant}.wd1.myworkdayjobs.com{path}",
+                        "source":   "Workday",
+                    })            # Stop if we got fewer than a full page (last page)
+            if len(postings) < limit:
+                break
+            offset += limit
+            # Safety cap: don't scan > 500 jobs per company
+            if offset >= 500:
+                break
         return jobs
     except Exception:
         return []
@@ -194,7 +223,12 @@ def fetch_wd(tenant, job_board="External"):
 def fetch_breezy(slug):
     """GET the public JSON feed every Breezy HR company exposes at {slug}.breezy.hr/json"""
     try:
-        data = requests.get(f"https://{slug}.breezy.hr/json", timeout=TIMEOUT).json()
+        resp = requests.get(f"https://{slug}.breezy.hr/json", timeout=TIMEOUT)
+        if resp.status_code != 200:
+            return []
+        data = resp.json()
+        if not isinstance(data, list):
+            return []
         jobs = []
         for j in data:
             if j.get("state", "published") != "published":
@@ -205,12 +239,12 @@ def fetch_breezy(slug):
             jid     = j.get("_id", "")
             if is_match(title, loc):
                 jobs.append({
-                    "id": f"breezy-{slug}-{jid}",
-                    "title": title,
-                    "company": slug,
+                    "id":       f"breezy-{slug}-{jid}",
+                    "title":    title,
+                    "company":  slug,
                     "location": loc,
-                    "url": f"https://{slug}.breezy.hr/p/{jid}",
-                    "source": "BreezyHR",
+                    "url":      f"https://{slug}.breezy.hr/p/{jid}",
+                    "source":   "BreezyHR",
                 })
         return jobs
     except Exception:
@@ -220,10 +254,13 @@ def fetch_breezy(slug):
 def fetch_workable(slug):
     """GET Workable's public widget API for a company slug."""
     try:
-        data = requests.get(
+        resp = requests.get(
             f"https://apply.workable.com/api/v1/widget/accounts/{slug}/jobs",
             timeout=TIMEOUT
-        ).json()
+        )
+        if resp.status_code != 200:
+            return []
+        data = resp.json()
         jobs = []
         for j in data.get("results", []):
             title     = j.get("title", "")
@@ -234,12 +271,11 @@ def fetch_workable(slug):
             shortcode = j.get("shortcode", "")
             if is_match(title, loc):
                 jobs.append({
-                    "id": f"wk-{slug}-{shortcode}",
-                    "title": title,
-                    "company": slug,
-                    "location": loc,
-                    "url": f"https://apply.workable.com/{slug}/j/{shortcode}/",
-                    "source": "Workable",
+                    "id":       f"wk-{slug}-{shortcode}",
+                    "title":    title,
+                    "company":  slug,
+                    "location": loc,                    "url":      f"https://apply.workable.com/{slug}/j/{shortcode}/",
+                    "source":   "Workable",
                 })
         return jobs
     except Exception:
@@ -266,12 +302,12 @@ def fetch_icims(portal_base, company_name):
             if is_match(title, loc):
                 jid = re.search(r"/jobs/(\d+)", link)
                 jobs.append({
-                    "id": f"icims-{company_name}-{jid.group(1) if jid else i}",
-                    "title": title,
-                    "company": company_name,
+                    "id":       f"icims-{company_name}-{jid.group(1) if jid else i}",
+                    "title":    title,
+                    "company":  company_name,
                     "location": loc,
-                    "url": link,
-                    "source": "iCIMS",
+                    "url":      link,
+                    "source":   "iCIMS",
                 })
         return jobs
     except Exception:
@@ -294,14 +330,13 @@ def fetch_paylocity(company_id, company_name):
             job_id = str(j.get("jobId", "") or j.get("id", ""))
             if is_match(title, loc):
                 jobs.append({
-                    "id": f"plcty-{company_id}-{job_id}",
-                    "title": title,
-                    "company": company_name,
+                    "id":       f"plcty-{company_id}-{job_id}",
+                    "title":    title,
+                    "company":  company_name,
                     "location": loc,
-                    "url": (f"https://recruiting.paylocity.com/recruiting/jobs/"
-                            f"All/{company_id}/{company_name}/{job_id}"),
-                    "source": "Paylocity",
-                })
+                    "url":      (f"https://recruiting.paylocity.com/recruiting/jobs/"
+                                 f"All/{company_id}/{company_name}/{job_id}"),
+                    "source":   "Paylocity",                })
         return jobs
     except Exception:
         return []
@@ -329,15 +364,79 @@ def fetch_adp(company_id, company_name):
             job_id = str(j.get("jobId", "") or j.get("requisitionId", ""))
             if is_match(title, loc):
                 jobs.append({
-                    "id": f"adp-{company_id}-{job_id}",
-                    "title": title,
-                    "company": company_name,
+                    "id":       f"adp-{company_id}-{job_id}",
+                    "title":    title,
+                    "company":  company_name,
                     "location": loc,
-                    "url": (
+                    "url":      (
                         f"https://workforcenow.adp.com/mascsr/default/mdf/recruitment/"
                         f"recruitment.html?cid={company_id}&ccId=0&jobId={job_id}&type=MP&lang=en_US"
                     ),
-                    "source": "ADP",
+                    "source":   "ADP",
+                })
+        return jobs
+    except Exception:
+        return []
+
+# ── SMARTRECRUITERS ───────────────────────────────────────────────────────────
+def fetch_sr(company_id, company_name):
+    """SmartRecruiters public job widget API."""
+    try:
+        resp = requests.get(
+            f"https://api.smartrecruiters.com/v1/companies/{company_id}/postings"
+            f"?limit=100&status=PUBLISHED",
+            timeout=TIMEOUT
+        )
+        if resp.status_code != 200:
+            return []
+        data = resp.json()
+        jobs = []
+        for j in data.get("content", []):
+            title = j.get("name", "")
+            loc   = j.get("location", {}).get("city", "") or ""
+            country = j.get("location", {}).get("country", "") or ""
+            if country and country.upper() != "US":
+                continue
+            jid = j.get("id", "")
+            ref = j.get("refNumber", jid)
+            if is_match(title, loc):
+                jobs.append({
+                    "id":       f"sr-{company_id}-{jid}",
+                    "title":    title,                    "company":  company_name,
+                    "location": loc,
+                    "url":      f"https://jobs.smartrecruiters.com/{company_id}/{ref}",
+                    "source":   "SmartRecruiters",
+                })
+        return jobs
+    except Exception:
+        return []
+
+# ── TALEO (Oracle) ────────────────────────────────────────────────────────────
+def fetch_taleo(subdomain, company_name):
+    """Oracle Taleo public job search API."""
+    try:
+        resp = requests.get(
+            f"https://{subdomain}.taleo.net/careersection/rest/jobboard/posting/search"
+            f"?lang=en&start=0&stop=100&radiusUnit=km",
+            headers={"Accept": "application/json"},
+            timeout=TIMEOUT
+        )
+        if resp.status_code != 200:
+            return []
+        data = resp.json()
+        jobs = []
+        for j in data.get("req", {}).get("req", []):
+            title   = j.get("req_title_1", j.get("TITLE", ""))
+            loc     = j.get("req_location_1", j.get("LOCATION", ""))
+            req_no  = j.get("req_no_1", j.get("requisitionno", ""))
+            if is_match(title, loc):
+                jobs.append({
+                    "id":       f"taleo-{subdomain}-{req_no}",
+                    "title":    title,
+                    "company":  company_name,
+                    "location": loc,
+                    "url":      f"https://{subdomain}.taleo.net/careersection/2/jobdetail.ftl?job={req_no}",
+                    "source":   "Taleo",
                 })
         return jobs
     except Exception:
@@ -356,6 +455,8 @@ GREENHOUSE = [
     "marqeta","blend","wayfair","poshmark","vroom","hims","duolingo","coursera",
     "attentive","klaviyo","iterable","braze","benchling","lattice","rippling","deel",
     "remote","drata","vanta","scaleai","labelbox","snorkelai","patientpoint","veeva",
+    "asana","box","okta","zoom","docusign","coupa","sprinklr","benchmarksix",
+    "samsara","verkada","toast","dutchie","appcues","segment","mparticle",
 ]
 
 LEVER = [
@@ -363,7 +464,8 @@ LEVER = [
     "zapier","intercom","contentful","heap","fullstory","pendo","productboard",
     "hotjar","surveymonkey","qualtrics","wealthsimple","nerdwallet","avant","arcadia",
     "metabase","preset","lightdash","airwallex","typeform","squarespace",
-    "shutterstock","invision","lucid","whimsical","coda",
+    "shutterstock","invision","lucid","whimsical","coda","carta","pilot",
+    "gusto","ripple","benchmarkemail","gong","outreach","salesloft",
 ]
 
 ASHBY = [
@@ -372,10 +474,10 @@ ASHBY = [
     "scale-ai","linear","retool","vercel","posthog","mercury","ramp","brex","puzzle",
     "middesk","check","gusto","remote","deel","rippling","headway","alma","brightline",
     "nourish","lyra-health","spring-health","cerebral","beehiiv","read-ai","reforge","luma",
+    "watershed","patch","arcadia-power","watershed-climate",
 ]
 
 # Workday — (tenant, job_board_name)
-# Large enterprises; board name is usually "External" but varies per company.
 WORKDAY = [
     ("salesforce",       "External_Career_Site"),
     ("adobe",            "External"),
@@ -399,6 +501,10 @@ WORKDAY = [
     ("etsy",             "External"),
     ("chewy",            "External"),
     ("wayfair",          "External"),
+    ("mcdonalds",        "External"),
+    ("verizon",          "External"),
+    ("att",              "External"),
+    ("t-mobile",         "External"),
     # Healthcare / pharma
     ("pfizer",           "External"),
     ("jnj",              "External"),
@@ -412,6 +518,8 @@ WORKDAY = [
     ("abbott",           "External"),
     ("baxter",           "External"),
     ("hologic",          "External"),
+    ("bd",               "External"),
+    ("zimmer",           "External"),
     # Financial services
     ("capitalone",       "External"),
     ("progressive",      "External"),
@@ -421,6 +529,9 @@ WORKDAY = [
     ("cvs",              "External"),
     ("walgreens",        "External"),
     ("mckesson",         "External"),
+    ("cigna",            "External"),
+    ("aetna",            "External"),
+    ("anthem",           "External"),
     # Enterprise / other
     ("3m",               "External"),
     ("servicenow",       "External"),
@@ -428,6 +539,10 @@ WORKDAY = [
     ("adp",              "External"),
     ("workday",          "External"),
     ("cargill",          "External"),
+    ("hp",               "External"),
+    ("dell",             "External"),
+    ("oracle",           "External"),
+    ("sap",              "External"),
 ]
 
 # Breezy HR — company subdomains ({slug}.breezy.hr)
@@ -441,6 +556,8 @@ BREEZY = [
     "teachable","thinkific","kajabi","podia",
     "sprig","maze","userleap",
     "quantcast","lotame",
+    "clearbit","lusha","zoominfo-technologies","apollo-io",
+    "mixrank","similarweb","semrush",
 ]
 
 # Workable — company slugs at apply.workable.com
@@ -457,35 +574,37 @@ WORKABLE = [
     "envoy","robin","officespace",
     "factorial","personio","hibob","kenjo",
     "leapsome","reflektive","betterworks",
+    "paddle","chargebee","recurly","zuora",
+    "adyen","checkout-com","stripe-workable",
 ]
 
 # iCIMS — (portal_base_url, company_name)
 ICIMS = [
-    ("https://jobs-pfizer.icims.com",             "pfizer"),
-    ("https://careers-abbvie.icims.com",           "abbvie"),
-    ("https://jobs-lilly.icims.com",               "lilly"),
-    ("https://jobs-merck.icims.com",               "merck"),
-    ("https://jobs-bms.icims.com",                 "bms"),
-    ("https://careers-astrazeneca.icims.com",      "astrazeneca"),
-    ("https://jobs-gsk.icims.com",                 "gsk"),
-    ("https://jobs-novartis.icims.com",            "novartis"),
-    ("https://careers-ups.icims.com",              "ups"),
-    ("https://jobs-fedex.icims.com",               "fedex"),
-    ("https://careers-lockheedmartin.icims.com",   "lockheedmartin"),
-    ("https://jobs-boeing.icims.com",              "boeing"),
-    ("https://careers-northropgrumman.icims.com",  "northropgrumman"),
-    ("https://jobs-raytheon.icims.com",            "raytheon"),
-    ("https://careers-cigna.icims.com",            "cigna"),
-    ("https://jobs-aig.icims.com",                 "aig"),
-    ("https://careers-metlife.icims.com",          "metlife"),
-    ("https://jobs-prudential.icims.com",          "prudential"),
-    ("https://careers-schwab.icims.com",           "charlesschwab"),
-    ("https://jobs-fidelity.icims.com",            "fidelity"),
-    ("https://careers-vanguard.icims.com",         "vanguard"),
-    ("https://jobs-pnc.icims.com",                 "pnc"),
-    ("https://careers-usbank.icims.com",           "usbank"),
-    ("https://careers-publicis.icims.com",         "publicis"),
-    ("https://jobs-omnicom.icims.com",             "omnicom"),
+    ("https://jobs-pfizer.icims.com",             "Pfizer"),
+    ("https://careers-abbvie.icims.com",           "AbbVie"),
+    ("https://jobs-lilly.icims.com",               "EliLilly"),
+    ("https://jobs-merck.icims.com",               "Merck"),
+    ("https://jobs-bms.icims.com",                 "BristolMyersSquibb"),
+    ("https://careers-astrazeneca.icims.com",      "AstraZeneca"),
+    ("https://jobs-gsk.icims.com",                 "GSK"),
+    ("https://jobs-novartis.icims.com",            "Novartis"),
+    ("https://careers-ups.icims.com",              "UPS"),
+    ("https://jobs-fedex.icims.com",               "FedEx"),
+    ("https://careers-lockheedmartin.icims.com",   "LockheedMartin"),
+    ("https://jobs-boeing.icims.com",              "Boeing"),
+    ("https://careers-northropgrumman.icims.com",  "NorthropGrumman"),
+    ("https://jobs-raytheon.icims.com",            "Raytheon"),
+    ("https://careers-cigna.icims.com",            "Cigna"),
+    ("https://jobs-aig.icims.com",                 "AIG"),
+    ("https://careers-metlife.icims.com",          "MetLife"),
+    ("https://jobs-prudential.icims.com",          "Prudential"),
+    ("https://careers-schwab.icims.com",           "CharlesSchwab"),
+    ("https://jobs-fidelity.icims.com",            "Fidelity"),
+    ("https://careers-vanguard.icims.com",         "Vanguard"),
+    ("https://jobs-pnc.icims.com",                 "PNC"),
+    ("https://careers-usbank.icims.com",           "USBank"),
+    ("https://careers-publicis.icims.com",         "Publicis"),
+    ("https://jobs-omnicom.icims.com",             "Omnicom"),
 ]
 
 # Paylocity — (company_id, display_name)
@@ -524,6 +643,59 @@ ADP = [
     ("5000422396901", "Labcorp"),
 ]
 
+# SmartRecruiters — (company_id_slug, display_name)
+SMARTRECRUITERS = [
+    ("ALDI", "ALDI"),
+    ("Ikea", "IKEA"),
+    ("Bosch", "Bosch"),
+    ("Siemens", "Siemens"),
+    ("McDonalds", "McDonalds"),
+    ("Visa", "Visa"),
+    ("Mastercard", "Mastercard"),
+    ("LinkedIn", "LinkedIn"),
+    ("Twitter", "Twitter/X"),
+    ("Snap", "Snap"),
+    ("Twitch", "Twitch"),
+    ("Spotify", "Spotify"),
+    ("Klarna", "Klarna"),
+    ("Zalando", "Zalando"),
+    ("Delivery Hero", "DeliveryHero"),
+    ("N26", "N26"),
+    ("Celonis", "Celonis"),
+    ("Personio", "Personio-SR"),
+    ("GetYourGuide", "GetYourGuide"),
+    ("HelloFresh", "HelloFresh"),
+]
+
+# Taleo — (subdomain, display_name)
+TALEO = [
+    ("gm",           "GeneralMotors"),
+    ("boeing",       "Boeing"),
+    ("lockheed",     "LockheedMartin"),
+    ("raytheon",     "RaytheonTechnologies"),
+    ("ge",           "GeneralElectric"),
+    ("honeywell",    "Honeywell"),
+    ("ups",          "UPS"),
+    ("fedex",        "FedEx"),
+    ("target",       "Target"),
+    ("bestbuy",      "BestBuy"),
+    ("kroger",       "Kroger"),
+    ("costco",       "Costco"),
+    ("walgreens",    "Walgreens"),
+    ("cvs",          "CVSHealth"),
+    ("humana",       "Humana"),
+    ("unitedhealth", "UnitedHealth"),
+    ("anthem",       "Anthem"),
+    ("cigna",        "CignaTaleo"),
+    ("jpmorgan",     "JPMorganChase"),
+    ("bankofamerica","BankofAmerica"),
+    ("wellsfargo",   "WellsFargo"),
+    ("goldman",      "GoldmanSachs"),
+    ("morganstanley","MorganStanley"),
+    ("blackrock",    "BlackRock"),
+    ("fidelity",     "FidelityTaleo"),
+]
+
 # ══════════════════════════════════════════════════════════════════════════════
 # MAIN
 # ══════════════════════════════════════════════════════════════════════════════
@@ -541,14 +713,30 @@ def run():
       + [(fetch_icims,     p, n) for p, n in ICIMS]
       + [(fetch_paylocity, i, n) for i, n in PAYLOCITY]
       + [(fetch_adp,       i, n) for i, n in ADP]
+      + [(fetch_sr,        i, n) for i, n in SMARTRECRUITERS]
+      + [(fetch_taleo,     s, n) for s, n in TALEO]
     )
 
     all_jobs = []
+    platform_counts = {}   # source -> total matching jobs found
     with ThreadPoolExecutor(max_workers=MAX_WORKERS) as ex:
         futs = {ex.submit(item[0], *item[1:]): item for item in tasks}
         for f in as_completed(futs):
-            all_jobs.extend(f.result())
+            jobs = f.result()
+            all_jobs.extend(jobs)
+            for j in jobs:
+                src = j["source"]
+                platform_counts[src] = platform_counts.get(src, 0) + 1
 
+    # Per-platform summary (always visible in Actions log)
+    print("\n── Platform scan results ──────────────────────────────────")
+    for platform in ["Greenhouse","Lever","Ashby","Workday",
+                     "BreezyHR","Workable","iCIMS","Paylocity","ADP",
+                     "SmartRecruiters","Taleo"]:
+        n = platform_counts.get(platform, 0)
+        print(f"  {platform:<16}: {n:>4} matching USA jobs")
+    print(f"  {'TOTAL':<16}: {len(all_jobs):>4} matching USA jobs")
+    print("────────────────────────────────────────────────────────────\n")
     # Deduplicate and keep only net-new
     seen_ids, new_jobs = set(), []
     for j in all_jobs:
@@ -559,7 +747,7 @@ def run():
     # Sort by source then title for readability
     new_jobs.sort(key=lambda j: (j["source"], j["title"]))
 
-    print(f"Scanned: {len(all_jobs)} | New USA matches: {len(new_jobs)}")
+    print(f"Scanned: {len(all_jobs)} total | New (not in cache): {len(new_jobs)}")
 
     if new_jobs:
         ts = datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")
