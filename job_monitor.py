@@ -18,18 +18,37 @@ MATCH = [
     "data scientist","data science","applied scientist","research scientist",
     "decision scientist","quantitative analyst","quantitative researcher",
     "business analyst","business intelligence","bi analyst","bi engineer",
-    "bi developer","data analyst","analytics analyst",
+    "bi developer","data analyst","analytics analyst","staff analyst",
+    # Machine learning / AI
+    "machine learning","ml engineer","ml scientist","ml ops","mlops",
+    "ml platform","applied ml","ml infrastructure","ml research",
+    "ai engineer","ai scientist","ai/ml","artificial intelligence",
+    "deep learning","nlp engineer","nlp scientist","natural language processing",
+    "computer vision","cv engineer","generative ai","llm engineer",
+    "recommendation systems","recommender","ranking engineer","search scientist",
     # Product / growth
     "product analyst","product data scientist","growth analyst",
     "revenue analyst","revenue analytics","customer insights",
     "consumer insights","market analyst","market intelligence",
+    "pricing analyst","pricing scientist","demand forecasting",
     # Engineering / platform
     "analytics engineer","data engineer","analytics platform",
     "reporting analyst","reporting engineer","insights analyst",
-    "insights engineer","performance analyst",
+    "insights engineer","performance analyst","data platform",
+    "data infrastructure","data warehouse","data modeling",
+    "dbt engineer","spark engineer","data reliability",
+    # Visualization / BI tools
+    "tableau developer","power bi developer","looker developer",
+    "data visualization","dashboard engineer","reporting developer",
     # Experimentation / measurement
     "experimentation scientist","measurement scientist","applied statistician",
-    "a/b testing","causal inference",
+    "a/b testing","causal inference","statistician",
+    # Operations / supply chain
+    "operations analyst","operations research","supply chain analyst",
+    "logistics analyst","inventory analyst","demand analyst",
+    # Risk / fraud / finance
+    "risk analyst","fraud analyst","credit analyst","financial analyst",
+    "actuarial analyst","portfolio analyst","quantitative risk",
     # Marketing / CRM
     "marketing analyst","marketing data scientist","marketing scientist",
     "media mix model","mmm scientist","attribution scientist",
@@ -38,14 +57,14 @@ MATCH = [
     "real world evidence","rwe scientist","patient journey analyst",
     "healthcare data scientist","pharma analytics","heor analyst",
     "health economics","outcomes research","clinical data analyst",
-    "epidemiologist","biostatistician",
+    "epidemiologist","biostatistician","health informatics",
     # People / HR
     "people analytics","hr analytics","workforce analytics",
 ]
 
 # ── Exclude — leadership / unrelated ──────────────────────────────────────────
 EXCLUDE = [
-    "director","vp ","vice president","head of","chief","principal ",
+    "director","vp ","vice president","head of","chief",
     "senior manager","manager of","associate director",
     "software engineer","frontend","backend","devops","security engineer",
     "legal","recruiter","sourcer","designer","ux researcher",
