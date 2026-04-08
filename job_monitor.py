@@ -146,7 +146,8 @@ def fetch_lv(company):
         ).json()
         jobs = []
         for j in data:
-            title = j.get("text", "")            loc   = j.get("categories", {}).get("location", "")
+            title = j.get("text", "")
+            loc   = j.get("categories", {}).get("location", "")
             if is_match(title, loc):
                 jobs.append({"id": f"lv-{j['id']}", "title": title,
                               "company": company, "location": loc,
