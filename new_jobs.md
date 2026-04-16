@@ -1,6 +1,5 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-04-16 16:25 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-04-16 18:09 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Lead Data Science Analyst, GTM Strategic Analytics and Insights | klaviyo | Denver, CO | Greenhouse | [Apply](https://www.klaviyo.com/careers/jobs?gh_jid=7702330003) |
-| 2 | Lead Data Science Analyst, GTM Strategic Analytics and Insights | klaviyo | Boston, MA | Greenhouse | [Apply](https://www.klaviyo.com/careers/jobs?gh_jid=7687789003) |
+| 1 | Data Engineer | brex | Seattle, Washington, United States | Greenhouse | [Apply](https://www.brex.com/careers/8510493002?gh_jid=8510493002) |
