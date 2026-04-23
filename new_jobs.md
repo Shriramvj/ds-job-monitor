@@ -1,6 +1,5 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-04-22 23:50 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-04-23 02:57 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Analytics & Data Science Manager, Finance | scaleai | San Francisco, CA | Greenhouse | [Apply](https://job-boards.greenhouse.io/scaleai/jobs/4673090005) |
-| 2 | Sr Financial Analyst, Strategic Finance (AI & Automation) | amplitude | San Francisco, CA | Greenhouse | [Apply](https://job-boards.greenhouse.io/amplitude/jobs/8520088002) |
+| 1 | Data Scientist, Core Data -  PhD (2026) | figma | New York, NY • United States; San Francisco, CA • New York, NY | Greenhouse | [Apply](https://boards.greenhouse.io/figma/jobs/5976930004?gh_jid=5976930004) |
