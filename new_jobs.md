@@ -1,5 +1,6 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-04-27 22:59 UTC
+# 2 New DS/Analytics Jobs — USA Only — 2026-04-28 00:01 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Financial Analyst | samsara | Remote - OR | Greenhouse | [Apply](https://www.samsara.com/company/careers/roles/7819567?gh_jid=7819567) |
+| 1 | Sr. Staff Machine Learning Engineer, Content Quality | pinterest | San Francisco, CA, US | Greenhouse | [Apply](https://www.pinterestcareers.com/jobs/?gh_jid=7724254) |
+| 2 | Staff Product Manager - Data Platforms | twilio | Remote - US | Greenhouse | [Apply](https://job-boards.greenhouse.io/twilio/jobs/7593382) |
