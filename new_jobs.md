@@ -1,6 +1,6 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-04-29 15:19 UTC
+# 2 New DS/Analytics Jobs — USA Only — 2026-04-29 17:42 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Machine Learning Engineer, PhD Intern | instacart | United States - Remote | Greenhouse | [Apply](https://instacart.careers/job/?gh_jid=5917202) |
-| 2 | Senior Data Engineer, Data Foundations | komodohealth | United States (Remote) | Greenhouse | [Apply](https://job-boards.greenhouse.io/komodohealth/jobs/8527016002) |
+| 1 | Financial Analyst II | braze | Austin | Greenhouse | [Apply](https://boards.greenhouse.io/braze/jobs/7867071?gh_jid=7867071) |
+| 2 | Sr. Business Analyst, IT Transformation | elastic | United States | Greenhouse | [Apply](https://jobs.elastic.co/jobs?gh_jid=7621572&gh_jid=7621572) |
