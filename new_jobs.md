@@ -1,5 +1,5 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-04-30 19:28 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-04-30 21:04 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | AI Engineer - FDE (Forward Deployed Engineer) - U.S. Federal Sector | databricks | United States | Greenhouse | [Apply](https://databricks.com/company/careers/open-positions/job?gh_jid=8531838002) |
+| 1 | Manager, Data Science - AI Product | figma | San Francisco, CA • New York, NY • United States | Greenhouse | [Apply](https://boards.greenhouse.io/figma/jobs/5983820004?gh_jid=5983820004) |
