@@ -1,5 +1,7 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-05-04 20:18 UTC
+# 3 New DS/Analytics Jobs — USA Only — 2026-05-04 22:05 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Staff Machine Learning Engineer, Ads Measurement Modeling | reddit | Remote - United States | Greenhouse | [Apply](https://job-boards.greenhouse.io/reddit/jobs/7890096) |
+| 1 |  Lead GTM Data Operations Analyst, AI Workflows | klaviyo | Denver, CO | Greenhouse | [Apply](https://www.klaviyo.com/careers/jobs?gh_jid=7724065003) |
+| 2 | Lead GTM Data Operations Analyst, AI Workflows | klaviyo | Boston, MA | Greenhouse | [Apply](https://www.klaviyo.com/careers/jobs?gh_jid=7718967003) |
+| 3 | Lead GTM Data Operations Analyst, AI Workflows | klaviyo | San Francisco, CA | Greenhouse | [Apply](https://www.klaviyo.com/careers/jobs?gh_jid=7724068003) |
