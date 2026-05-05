@@ -1,5 +1,5 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-05-05 22:03 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-05-05 23:52 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Senior Staff Machine Learning Engineer, Post Training | airbnb | Remote - USA | Greenhouse | [Apply](https://careers.airbnb.com/positions/7858738?gh_jid=7858738) |
+| 1 | Senior Strategic Financial Analyst – Growth | instacart | United States - Remote | Greenhouse | [Apply](https://instacart.careers/job/?gh_jid=7896276) |
