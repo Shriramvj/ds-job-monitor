@@ -1,7 +1,6 @@
-# 3 New DS/Analytics Jobs — USA Only — 2026-05-13 16:22 UTC
+# 2 New DS/Analytics Jobs — USA Only — 2026-05-13 18:58 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Data Science Intern (Summer 2026) | cloudflare | In-Office | Greenhouse | [Apply](https://boards.greenhouse.io/cloudflare/jobs/7914511?gh_jid=7914511) |
-| 2 | Machine Learning Engineer Intern (Summer 2026) | cloudflare | In-Office | Greenhouse | [Apply](https://boards.greenhouse.io/cloudflare/jobs/7914628?gh_jid=7914628) |
-| 3 | Senior Analyst, HR Analytics | elastic | United States | Greenhouse | [Apply](https://jobs.elastic.co/jobs?gh_jid=7913747&gh_jid=7913747) |
+| 1 | Data Scientist | patientpoint | Cincinnati, Ohio, United States | Greenhouse | [Apply](https://job-boards.greenhouse.io/patientpoint/jobs/4694351005) |
+| 2 | Sales AI Engineer | figma | San Francisco, CA • New York, NY • United States | Greenhouse | [Apply](https://boards.greenhouse.io/figma/jobs/5991176004?gh_jid=5991176004) |
