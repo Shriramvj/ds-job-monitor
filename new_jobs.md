@@ -1,5 +1,5 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-05-19 23:06 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-05-20 03:55 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Staff Machine Learning Engineer, Programmatic Ads | pinterest | San Francisco, CA, US; Palo Alto, CA, US; Seattle, WA, US | Greenhouse | [Apply](https://www.pinterestcareers.com/jobs/?gh_jid=7494765) |
+| 1 | Staff Data Scientist, Safety Insights | reddit | Remote - United States | Greenhouse | [Apply](https://job-boards.greenhouse.io/reddit/jobs/7863304) |
