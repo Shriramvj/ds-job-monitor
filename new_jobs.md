@@ -1,5 +1,5 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-06-04 20:59 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-06-04 22:40 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Data Analyst | modernhealth | Remote - US | Greenhouse | [Apply](https://job-boards.greenhouse.io/modernhealth/jobs/8550544002) |
+| 1 | Senior Financial Analyst, Products & Technology | okta | San Francisco, California | Greenhouse | [Apply](https://www.okta.com/company/careers/opportunity/7983770?gh_jid=7983770) |
