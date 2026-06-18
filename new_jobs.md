@@ -1,5 +1,5 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-06-17 23:41 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-06-18 04:19 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Payment Operations Analyst | brex | Salt Lake City, Utah, United States | Greenhouse | [Apply](https://www.brex.com/careers/8597771002?gh_jid=8597771002) |
+| 1 | Senior Staff Machine Learning Systems Engineer, Indexing & Retrieval Search | reddit | Remote - United States | Greenhouse | [Apply](https://job-boards.greenhouse.io/reddit/jobs/7844238) |
