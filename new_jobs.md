@@ -1,5 +1,7 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-06-24 20:49 UTC
+# 3 New DS/Analytics Jobs — USA Only — 2026-06-24 22:20 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Analytics Engineer | coinbase | Remote - USA | Greenhouse | [Apply](https://www.coinbase.com/careers/positions/8020892?gh_jid=8020892) |
+| 1 | AI Engineer, Ecosystem | brex | Seattle, Washington, United States | Greenhouse | [Apply](https://www.brex.com/careers/8606885002?gh_jid=8606885002) |
+| 2 | AI Engineer, Ecosystem | brex | San Francisco, California, United States | Greenhouse | [Apply](https://www.brex.com/careers/8606890002?gh_jid=8606890002) |
+| 3 | AI Engineer, Product | brex | San Francisco, California, United States | Greenhouse | [Apply](https://www.brex.com/careers/8606845002?gh_jid=8606845002) |
