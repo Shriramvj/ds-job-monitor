@@ -1,5 +1,5 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-06-26 00:12 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-06-26 05:10 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Analytics Engineer, GFCO Analytics | coinbase | Remote - USA | Greenhouse | [Apply](https://www.coinbase.com/careers/positions/8024880?gh_jid=8024880) |
+| 1 | Staff Data Scientist, Ads Delivery | pinterest | Seattle , WA, US; Remote, US | Greenhouse | [Apply](https://www.pinterestcareers.com/jobs/?gh_jid=7985294) |
