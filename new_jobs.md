@@ -1,6 +1,5 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-07-02 16:52 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-07-02 18:27 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Principal Research Scientist/TLM - AI Scaling | databricks | Mountain View, California; San Francisco, California | Greenhouse | [Apply](https://databricks.com/company/careers/open-positions/job?gh_jid=8557780002) |
-| 2 | Senior Analytics Engineer | patientpoint | Remote, US | Greenhouse | [Apply](https://job-boards.greenhouse.io/patientpoint/jobs/4711249005) |
+| 1 | Applied Scientist, Sync | outreach | Seattle, WA | Lever | [Apply](https://jobs.lever.co/outreach/aa98974b-096f-403c-8d38-ba08961f0fd2) |
