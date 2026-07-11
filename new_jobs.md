@@ -1,6 +1,5 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-07-11 00:01 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-07-11 04:14 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Senior Data Engineer II | samsara | Remote - US | Greenhouse | [Apply](https://www.samsara.com/company/careers/roles/8039914?gh_jid=8039914) |
-| 2 | Sr. Staff Production Engineer - Data Platform | databricks | Mountain View, California; San Francisco, California | Greenhouse | [Apply](https://databricks.com/company/careers/open-positions/job?gh_jid=7823561002) |
+| 1 | Senior Data Engineer, Public Sector | scaleai | Washington, DC | Greenhouse | [Apply](https://job-boards.greenhouse.io/scaleai/jobs/4713597005) |
