@@ -1,5 +1,6 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-07-29 19:21 UTC
+# 2 New DS/Analytics Jobs — USA Only — 2026-07-29 20:59 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Principal Security ML Research Engineer | elastic | United States | Greenhouse | [Apply](https://jobs.elastic.co/jobs?gh_jid=8079632&gh_jid=8079632) |
+| 1 | Machine Learning Manager, Feed Ecosystems | reddit | Remote - United States | Greenhouse | [Apply](https://job-boards.greenhouse.io/reddit/jobs/8095009) |
+| 2 | Machine Learning Manager, Feed Relevance (Retrieval) | reddit | Remote - United States | Greenhouse | [Apply](https://job-boards.greenhouse.io/reddit/jobs/8094985) |
