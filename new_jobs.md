@@ -1,5 +1,6 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-08-03 17:53 UTC
+# 2 New DS/Analytics Jobs — USA Only — 2026-08-03 19:41 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Senior Applied ML Engineer - ML4Sys  | databricks | San Francisco, California | Greenhouse | [Apply](https://databricks.com/company/careers/open-positions/job?gh_jid=8656900002) |
+| 1 | Business Analyst  | okta | Chicago, Illinois | Greenhouse | [Apply](https://www.okta.com/company/careers/opportunity/8097799?gh_jid=8097799) |
+| 2 | Staff Data Scientist, Ads Delivery | pinterest | San Francisco, CA, US; Remote, US | Greenhouse | [Apply](https://www.pinterestcareers.com/jobs/?gh_jid=8026607) |
