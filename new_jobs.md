@@ -1,5 +1,6 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-08-14 19:51 UTC
+# 2 New DS/Analytics Jobs — USA Only — 2026-08-14 20:34 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Senior Data Science Manager, Algorithms | robinhood | Menlo Park, CA | Greenhouse | [Apply](https://boards.greenhouse.io/robinhood/jobs/8097597?t=gh_src=&gh_jid=8097597) |
+| 1 | Sr. Developer Advocate, AI and Machine Learning | databricks | Seattle, Washington | Greenhouse | [Apply](https://databricks.com/company/careers/open-positions/job?gh_jid=8716720002) |
+| 2 | Sr. Developer Advocate, AI and Machine Learning | databricks | San Francisco, California | Greenhouse | [Apply](https://databricks.com/company/careers/open-positions/job?gh_jid=8716192002) |
