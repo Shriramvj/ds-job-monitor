@@ -1,5 +1,5 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-08-20 19:33 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-08-20 20:31 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Senior Machine Learning Engineer, Digital Twin Platform | instacart | United States - Remote | Greenhouse | [Apply](https://instacart.careers/job/?gh_jid=8143145) |
+| 1 | GTM Strategy & Operations Analyst | stripe | New York, NY | Greenhouse | [Apply](https://stripe.com/jobs/search?gh_jid=8145119) |
