@@ -1,7 +1,6 @@
-# 3 New DS/Analytics Jobs — USA Only — 2026-08-28 01:21 UTC
+# 2 New DS/Analytics Jobs — USA Only — 2026-08-28 14:07 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Machine Learning Engineer II, Responsible AI | pinterest | San Francisco, CA, US; Remote, US | Greenhouse | [Apply](https://www.pinterestcareers.com/jobs/?gh_jid=8162046) |
-| 2 | Senior Data Scientist, Ads Integrity | reddit | Remote - United States | Greenhouse | [Apply](https://job-boards.greenhouse.io/reddit/jobs/8157580) |
-| 3 | Senior Machine Learning Engineer, Economist | instacart | United States - Remote | Greenhouse | [Apply](https://instacart.careers/job/?gh_jid=8157736) |
+| 1 | Senior Applied Scientist | datadog | New York, New York, USA | Greenhouse | [Apply](https://careers.datadoghq.com/detail/8164181/?gh_jid=8164181) |
+| 2 | Sr. Sales Operations Analyst | samsara | Remote - US | Greenhouse | [Apply](https://www.samsara.com/company/careers/roles/8153145?gh_jid=8153145) |
