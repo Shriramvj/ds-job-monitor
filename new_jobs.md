@@ -1,5 +1,5 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-08-31 21:47 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-09-01 01:05 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Engineering Manager, Data Warehouse and Integrations | amplitude | San Francisco, CA | Greenhouse | [Apply](https://job-boards.greenhouse.io/amplitude/jobs/8654510002) |
+| 1 | Senior Data Analyst | instacart | United States - Remote (except California, Connecticut, New Jersey, New York, and Washington) | Greenhouse | [Apply](https://instacart.careers/job/?gh_jid=8168301) |
