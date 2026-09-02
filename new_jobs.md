@@ -1,6 +1,5 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-09-02 20:45 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-09-02 23:11 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Senior Data Analyst, Public Sector | scaleai | Washington, DC | Greenhouse | [Apply](https://job-boards.greenhouse.io/scaleai/jobs/4729899005) |
-| 2 | Staff Analytics Engineer  | coursera | United States | Greenhouse | [Apply](https://job-boards.greenhouse.io/coursera/jobs/6178943004) |
+| 1 | AI Engineer, Customer Success | samsara | Remote - US | Greenhouse | [Apply](https://www.samsara.com/company/careers/roles/8024110?gh_jid=8024110) |
