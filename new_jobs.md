@@ -1,5 +1,5 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-09-21 23:55 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-09-22 04:06 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Pricing & Order Operations Analyst | fivetran | Remote, Georgia, United States, AMER | Greenhouse | [Apply](https://www.fivetran.com/careers/job?gh_jid=8001609003) |
+| 1 | Data Scientist | stripe | Seattle, WA | Greenhouse | [Apply](https://stripe.com/jobs/search?gh_jid=8222149) |
