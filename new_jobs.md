@@ -1,6 +1,7 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-09-25 18:20 UTC
+# 3 New DS/Analytics Jobs — USA Only — 2026-09-25 22:04 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Pricing & Order Operations Analyst | fivetran | USA - Austin (dbt) | Greenhouse | [Apply](https://www.fivetran.com/careers/job?gh_jid=8005548003) |
-| 2 | Staff Product Analyst, Finance Technologies | okta | Bellevue, Washington; Chicago, Illinois; New York, New York; Washington, DC | Greenhouse | [Apply](https://www.okta.com/company/careers/opportunity/8213700?gh_jid=8213700) |
+| 1 | Pricing & Order Operations Analyst | fivetran | USA - New York | Greenhouse | [Apply](https://www.fivetran.com/careers/job?gh_jid=8005785003) |
+| 2 | Pricing & Order Operations Analyst | fivetran | Oakland, California, United States, AMER | Greenhouse | [Apply](https://www.fivetran.com/careers/job?gh_jid=8005784003) |
+| 3 | Research Scientist - Human-AI Systems | snorkelai | San Francisco, CA (Hybrid) | Greenhouse | [Apply](https://job-boards.greenhouse.io/snorkelai/jobs/6208895004) |
