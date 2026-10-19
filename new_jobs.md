@@ -1,6 +1,6 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-10-19 19:08 UTC
+# 2 New DS/Analytics Jobs — USA Only — 2026-10-19 23:26 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Machine Learning Research Intern (Summer 2027) | scaleai | New York, NY; San Francisco, CA | Greenhouse | [Apply](https://job-boards.greenhouse.io/scaleai/jobs/4735665005) |
-| 2 | Senior Data Scientist, People Analytics & Research | airbnb | Remote - USA | Greenhouse | [Apply](https://careers.airbnb.com/positions/8301515?gh_jid=8301515) |
+| 1 | Senior AI Data & Analytics Engineer II | samsara | Remote - Seattle | Greenhouse | [Apply](https://www.samsara.com/company/careers/roles/8302004?gh_jid=8302004) |
+| 2 | Senior Engineering Manager, Data Platform  | duolingo | New York, NY; Pittsburgh, PA | Greenhouse | [Apply](https://careers.duolingo.com/jobs/8900546002?gh_jid=8900546002) |
