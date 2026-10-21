@@ -1,6 +1,5 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-10-21 19:11 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-10-21 23:04 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Manager, Analytics Engineering | patientpoint | Cincinnati, Ohio, United States; New York City, NY | Greenhouse | [Apply](https://job-boards.greenhouse.io/patientpoint/jobs/4746029005) |
-| 2 | Senior Data Analyst (Auth0) | okta | Chicago, Illinois; New York, New York; Seattle, Washington; Washington, DC | Greenhouse | [Apply](https://www.okta.com/company/careers/opportunity/8304288?gh_jid=8304288) |
+| 1 | Senior Data Engineer, Payments | airbnb | United States | Greenhouse | [Apply](https://careers.airbnb.com/positions/8300926?gh_jid=8300926) |
