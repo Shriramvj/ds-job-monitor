@@ -1,6 +1,6 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-10-22 19:06 UTC
+# 2 New DS/Analytics Jobs — USA Only — 2026-10-22 23:03 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Data Scientist, Algorithms - Pricing - Rider Engagement | lyft | San Francisco, CA | Greenhouse | [Apply](https://app.careerpuck.com/job-board/lyft/job/8908005002?gh_jid=8908005002) |
-| 2 | Senior Machine Learning Platform Engineer | klaviyo | Boston, MA | Greenhouse | [Apply](https://www.klaviyo.com/careers/jobs/8035953003?gh_jid=8035953003) |
+| 1 | Data Science Intern (2027 Start) | databricks | Mountain View, California; San Francisco, California | Greenhouse | [Apply](https://databricks.com/company/careers/open-positions/job?gh_jid=6866538002) |
+| 2 | Staff Data Scientist, Marketing Analytics | chime | San Francisco, CA, USA | Greenhouse | [Apply](https://boards.greenhouse.io/chime/jobs/8882465002?gh_jid=8882465002) |
