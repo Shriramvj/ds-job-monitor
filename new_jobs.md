@@ -1,5 +1,5 @@
-# 1 New DS/Analytics Jobs — USA Only — 2026-11-09 15:38 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-11-10 00:00 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Data Scientist, Dispute Risk | chime | Chicago, IL, USA | Greenhouse | [Apply](https://boards.greenhouse.io/chime/jobs/8904126002?gh_jid=8904126002) |
+| 1 | Senior People Analytics Lead | coursera | United States | Greenhouse | [Apply](https://job-boards.greenhouse.io/coursera/jobs/6251972004) |
