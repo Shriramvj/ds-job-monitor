@@ -1,6 +1,5 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-11-13 21:16 UTC
+# 1 New DS/Analytics Jobs — USA Only — 2026-11-14 02:01 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Language Measurement Scientist | duolingo | Pittsburgh, PA | Greenhouse | [Apply](https://careers.duolingo.com/jobs/8942115002?gh_jid=8942115002) |
-| 2 | Research Scientist, Open Benchmarks Red Team | snorkelai | New York City, NY (Hybrid); San Francisco, CA (Hybrid); United States (Remote) | Greenhouse | [Apply](https://job-boards.greenhouse.io/snorkelai/jobs/6260926004) |
+| 1 | Senior Data Scientist, Experimentation | robinhood | Menlo Park, CA | Greenhouse | [Apply](https://boards.greenhouse.io/robinhood/jobs/8356065?t=gh_src=&gh_jid=8356065) |
