@@ -1,6 +1,7 @@
-# 2 New DS/Analytics Jobs — USA Only — 2026-11-16 20:05 UTC
+# 3 New DS/Analytics Jobs — USA Only — 2026-11-17 03:30 UTC
 
 | # | Title | Company | Location | Source | Apply |
 |---|-------|---------|----------|--------|-------|
-| 1 | Principal, Consumer Insights  | reddit | Remote - United States | Greenhouse | [Apply](https://job-boards.greenhouse.io/reddit/jobs/7957771) |
-| 2 | Staff Data Scientist, Product Marketing | chime | San Francisco, CA, USA | Greenhouse | [Apply](https://boards.greenhouse.io/chime/jobs/8941673002?gh_jid=8941673002) |
+| 1 | Engineering Manager, Machine Learning | airbnb | San Francisco, CA | Greenhouse | [Apply](https://careers.airbnb.com/positions/8393726?gh_jid=8393726) |
+| 2 | Senior Analytics Engineer | coinbase | Remote - USA | Greenhouse | [Apply](https://www.coinbase.com/careers/positions/8394402?gh_jid=8394402) |
+| 3 | Senior Data Scientist, Trust (ML/Algo) | airbnb | Remote - USA | Greenhouse | [Apply](https://careers.airbnb.com/positions/8394151?gh_jid=8394151) |
